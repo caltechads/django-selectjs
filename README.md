@@ -20,5 +20,5 @@ INSTALLED_APPS = [
 ### Modify requirements.txt
 
 ```
-https://s3-us-west-2.amazonaws.com/imss-code-drop/django-selectjs/django-selectjs-0.1.0.zip
+https://s3-us-west-2.amazonaws.com/imss-code-drop/django-selectjs/django-selectjs-0.2.0.zip
 ```
