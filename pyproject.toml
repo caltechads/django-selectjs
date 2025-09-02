@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-selectjs"
-version = "0.2.0"
+version = "0.2.1"
 description = "Django SelectJS - A replacement for Select2 that uses plain HTML and Javascript"
 authors = [
     {name = "Caltech IMSS ADS", email = "imss-ads-staff@caltech.edu"}
