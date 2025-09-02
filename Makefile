@@ -18,7 +18,10 @@ release: dist
 	@bin/release.sh
 
 compile: uv.lock
-	@uv pip compile --group demo --group docs --group test pyproject.toml -o requirements.txt
+	# @uv pip compile --group demo --group docs --group test pyproject.toml -o requirements.txt
+	@uv pip compile pyproject.toml -o requirements.txt
+
+MAIN_BRANCH = master
 
 # --- Gate checks ---
 check-branch:
