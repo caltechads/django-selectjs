@@ -1,7 +1,5 @@
 from django.apps import apps
 from django.http import JsonResponse
-from django.utils.decorators import method_decorator
-from django.views.decorators.http import require_GET
 from django.views.generic import View
 
 
