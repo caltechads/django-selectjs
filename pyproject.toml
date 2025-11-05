@@ -1,7 +1,3 @@
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "django-selectjs"
 version = "0.2.1"
@@ -25,7 +21,11 @@ classifiers = [
     "Framework :: Django :: 4.2",
     "Framework :: Django :: 5",
     "Framework :: Django :: 5.1",
-    "Framework :: Django :: 5.2"
+    "Framework :: Django :: 5.2",
+    "Natural Language :: English",
+    "Topic :: Database",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
     "django >= 5.2",
@@ -35,8 +35,12 @@ dependencies = [
 Homepage = "https://github.com/caltechads/django-selectjs"
 Repository = "https://github.com/caltechads/django-selectjs"
 
+[tool.setuptools]
+include-package-data = true
+
 [tool.setuptools.packages.find]
-exclude = ["*.tests", "*.tests.*", "tests.*", "tests", "htmlcov"]
+exclude = ["*.tests", "*.tests.*", "tests.*", "tests", "htmlcov", "bin"]
+where = ["."]
 
 [tool.flake8]
 max-line-length = 120
@@ -57,7 +61,12 @@ ignore = [
 
 [tool.uv]
 python-preference = "only-system"
-default-groups = ["docs", "test"]
+default-groups = ["docs", "test", "demo"]
+
+[tool.uv.workspace]
+members = [
+    "demo",
+]
 
 [dependency-groups]
 dev = [
@@ -79,3 +88,16 @@ test = [
   "django-coverage-plugin>=1.8.0",
   "factory-boy>=2.12.0",
 ]
+demo = [
+  "django~=5.2",
+  "crispy-bootstrap5>=2025.6",
+  "django-book-manager>=0.3.2",
+  "django-crispy-forms~=2.4",
+  "django-extensions~=4.1",
+  "django-theme-academy>=0.3.11",
+  "django-wildewidgets>=1.2.0",
+]
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
