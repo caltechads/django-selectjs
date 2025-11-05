@@ -61,7 +61,7 @@ ignore = [
 
 [tool.uv]
 python-preference = "only-system"
-default-groups = ["docs", "test", "demo"]
+default-groups = ["docs", "test", "demo", "dev"]
 
 [tool.uv.workspace]
 members = [
