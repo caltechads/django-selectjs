@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Remove focus from all options
             options.forEach(opt => {
-                opt.classList.remove('focused');
+                opt.classList.remove('active');
                 opt.blur();
             });
 
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             focusedOptionIndex = index;
             const targetOption = options[index];
             if (targetOption) {
-                targetOption.classList.add('focused');
+                targetOption.classList.add('active');
                 targetOption.focus();
                 // Scroll into view if needed
                 targetOption.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
@@ -305,8 +305,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         option.addEventListener('focus', () => {
                             const options = getDropdownOptions();
                             focusedOptionIndex = options.indexOf(option);
-                            options.forEach(opt => opt.classList.remove('focused'));
-                            option.classList.add('focused');
+                            options.forEach(opt => opt.classList.remove('active'));
+                            option.classList.add('active');
                         });
                         dropdown.appendChild(option);
                     });

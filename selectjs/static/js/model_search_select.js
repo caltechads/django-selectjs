@@ -43,6 +43,35 @@ document.addEventListener('DOMContentLoaded', () => {
       // Hide original select
       select.style.display = 'none';
 
+      // Track keyboard navigation state
+      let highlightedIndex = -1;
+      let currentOptions = [];
+
+      // Function to select an option by index
+      const selectOption = (index) => {
+          if (index < 0 || index >= currentOptions.length) return;
+          const option = currentOptions[index];
+          if (option && option.click) {
+              option.click();
+          }
+      };
+
+      // Function to highlight an option by index
+      const highlightOption = (index) => {
+          // Remove highlight from all options
+          currentOptions.forEach(opt => {
+              opt.classList.remove('active', 'highlightedx');
+          });
+
+          if (index >= 0 && index < currentOptions.length) {
+              currentOptions[index].classList.add('active', 'highlightedx');
+              // Scroll into view if needed
+              currentOptions[index].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+
+          highlightedIndex = index;
+      };
+
       // Handle search input
       let debounceTimer;
       searchInput.addEventListener('input', () => {
@@ -52,6 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
               if (query.length < minLength) {
                   dropdown.innerHTML = '';
                   dropdown.classList.remove('show');
+                  currentOptions = [];
+                  highlightedIndex = -1;
                   return;
               }
 
@@ -64,6 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
                   const data = await response.json().catch(() => null);
 
                   dropdown.innerHTML = '';
+                  currentOptions = [];
+                  highlightedIndex = -1;
 
                   // Normalize possible response shapes into an array
                   const items = Array.isArray(data)
@@ -117,14 +150,63 @@ document.addEventListener('DOMContentLoaded', () => {
                           // Close dropdown
                           dropdown.innerHTML = '';
                           dropdown.classList.remove('show');
+                          currentOptions = [];
+                          highlightedIndex = -1;
                       });
                       dropdown.appendChild(option);
+                      currentOptions.push(option);
                   });
                   dropdown.classList.add('show');
+                  // Highlight first option when dropdown appears
+                  if (currentOptions.length > 0) {
+                      highlightOption(0);
+                  }
               } catch (error) {
                   console.error('Error fetching results:', error);
               }
           }, 300);
+      });
+
+      // Handle keyboard navigation when dropdown is visible
+      searchInput.addEventListener('keydown', (e) => {
+          if (!dropdown.classList.contains('show') || currentOptions.length === 0) {
+              return;
+          }
+
+          switch (e.key) {
+              case 'ArrowDown':
+                  e.preventDefault();
+                  if (highlightedIndex < currentOptions.length - 1) {
+                      highlightOption(highlightedIndex + 1);
+                  } else {
+                      highlightOption(0); // Wrap to top
+                  }
+                  break;
+
+              case 'ArrowUp':
+                  e.preventDefault();
+                  if (highlightedIndex > 0) {
+                      highlightOption(highlightedIndex - 1);
+                  } else {
+                      highlightOption(currentOptions.length - 1); // Wrap to bottom
+                  }
+                  break;
+
+              case 'Enter':
+                  e.preventDefault();
+                  if (highlightedIndex >= 0 && highlightedIndex < currentOptions.length) {
+                      selectOption(highlightedIndex);
+                  }
+                  break;
+
+              case 'Escape':
+                  e.preventDefault();
+                  dropdown.innerHTML = '';
+                  dropdown.classList.remove('show');
+                  currentOptions = [];
+                  highlightedIndex = -1;
+                  break;
+          }
       });
 
       // Close dropdown when clicking outside
@@ -132,6 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!select.parentNode.contains(e.target)) {
               dropdown.innerHTML = '';
               dropdown.classList.remove('show');
+              currentOptions = [];
+              highlightedIndex = -1;
           }
       });
 
