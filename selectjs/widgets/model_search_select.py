@@ -20,8 +20,12 @@ class ModelSearchSelectWidget(forms.Select):
 
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
-        context["widget"]["model"] = self.model._meta.model_name
-        context["widget"]["app_label"] = self.model._meta.app_label
+        if self.model:
+            context["widget"]["model"] = self.model._meta.model_name
+            context["widget"]["app_label"] = self.model._meta.app_label
+        else:
+            context["widget"]["model"] = None
+            context["widget"]["app_label"] = None
         context["widget"]["search_field"] = self.search_field
         context["widget"]["api_endpoint"] = self.api_endpoint
         context["widget"]["min_length"] = self.min_length

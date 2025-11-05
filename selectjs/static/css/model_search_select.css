@@ -31,6 +31,17 @@
   text-overflow: ellipsis;
 }
 
+.async-select-option.dropdown-item.focused {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.async-select-option.dropdown-item.focused:hover {
+    background-color: #0b5ed7;
+    color: #fff;
+}
+
+
 /* .async-select-wrapper.form-floating label {
     opacity: 0.65;
     transform: scale(0.9) translateY(-0.5rem) translateX(0.15rem);

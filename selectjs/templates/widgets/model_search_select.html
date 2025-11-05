@@ -7,9 +7,9 @@
     data-min-length="{{ widget.min_length }}"
     data-required="{{ widget.required }}"
     data-required-css-class="{{ widget.required_css_class }}"
-    {% if widget.value %}data-selected="{{ widget.value }}"{% endif %}>
+    {% if widget.value %}data-selected="{{ widget.value.0 }}"{% endif %}>
     {% if widget.value %}
-        <option value="{{ widget.value }}" selected>{{ widget.selected_text }}</option>
+        <option value="{{ widget.value.0 }}" selected>{{ widget.selected_text }}</option>
     {% else %}
         <option value="" selected>Select an option</option>
     {% endif %}

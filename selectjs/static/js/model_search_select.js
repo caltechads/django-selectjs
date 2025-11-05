@@ -60,11 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const highlightOption = (index) => {
           // Remove highlight from all options
           currentOptions.forEach(opt => {
-              opt.classList.remove('active', 'highlightedx');
+              opt.classList.remove('active', 'highlighted', 'focused');
           });
 
           if (index >= 0 && index < currentOptions.length) {
-              currentOptions[index].classList.add('active', 'highlightedx');
+              currentOptions[index].classList.add('active', 'highlighted', 'focused');
               // Scroll into view if needed
               currentOptions[index].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
           }
