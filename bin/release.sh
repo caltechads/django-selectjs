@@ -11,19 +11,10 @@ if test $(git rev-parse --abbrev-ref HEAD) = "master"; then
             echo "---------------------------------------------------"
             echo
             echo
-            git checkout build
-            git merge master
-            echo "Pushing build to origin ..."
-            git push --tags origin build
-            git checkout master
-            # We do this sleep here so our codepipeline can be triggered on the build push
-            # If you push master and build simultaneously, the pipeline gets confused and
-            # won't trigger.  Possibly master triggers the pipeline first and then the build
-            # push notification gets lost in a race condition.
-            echo "Sleeping 3 seconds to allow the build push to trigger the CodePipeline ..."
-            sleep 3
             echo "Pushing master to origin ..."
-            git push origin master
+            git push --tags origin master
+            echo "Uploading to PyPI ..."
+            twine upload dist/*
         else
             echo "Last commit was not a bumpversion; aborting."
             echo "Last commit message: ${MSG}"
