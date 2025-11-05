@@ -18,6 +18,7 @@ class MainMenu(AcademyThemeMainMenu):
     brand_text: str = "Django SelectJS Demo"
     items: List[Tuple[str, str]] = [
         ("Home", "core:home"),
+        ("External API", "core:external_api"),
     ]
 
 
@@ -38,7 +39,12 @@ class BookModelTable(ActionButtonModelTable):
     verbose_names = {"authors__full_name": "Authors"}
     striped = True
     actions = [
-        RowDjangoUrlButton(text="Edit", color="primary", url_path="core:home"),
+        RowDjangoUrlButton(
+            text="Edit",
+            color="primary",
+            url_path="core:edit_book",
+            url_args=["pk"],
+        ),
     ]
 
     def render_authors__full_name_column(self, row, column):
