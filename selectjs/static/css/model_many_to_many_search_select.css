@@ -45,9 +45,9 @@
 
 .async-select-many-tag-text {
     overflow: hidden;
-    text-overflow: ellipsis;
+    /* text-overflow: ellipsis; */
     white-space: nowrap;
-    max-width: 200px;
+    /* max-width: 200px; */
 }
 
 .async-select-many-tag-remove {
