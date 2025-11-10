@@ -33,7 +33,7 @@ check-clean:
 
 # --- Shared release pipeline ---
 # Expects BUMP=dev|patch|minor|major
-_release: compile check-branch check-clean
+_release: compile check-branch check-clean dist
 	@echo "Releasing $(BUMP) version"
 	@bumpversion "$(BUMP)"
 	@bin/release.sh
