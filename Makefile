@@ -33,9 +33,10 @@ check-clean:
 
 # --- Shared release pipeline ---
 # Expects BUMP=dev|patch|minor|major
-_release: compile check-branch check-clean dist
+_release: compile check-branch check-clean
 	@echo "Releasing $(BUMP) version"
 	@bumpversion "$(BUMP)"
+	@python -m build
 	@bin/release.sh
 
 # --- Explicit release targets (better tab-complete & discoverability) ---
