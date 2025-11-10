@@ -1,6 +1,6 @@
 [project]
 name = "django-selectjs"
-version = "0.3.2"
+version = "0.3.3"
 description = "Django SelectJS - A replacement for Select2 that uses plain HTML and Javascript"
 authors = [
     {name = "Caltech IMSS ADS", email = "imss-ads-staff@caltech.edu"}
@@ -91,10 +91,10 @@ test = [
 demo = [
   "django~=5.2",
   "crispy-bootstrap5>=2025.6",
-  "django-book-manager>=0.3.2",
+  "django-book-manager>=0.3.3",
   "django-crispy-forms~=2.4",
   "django-extensions~=4.1",
-  "django-theme-academy>=0.3.21",
+  "django-theme-academy>=0.3.31",
   "django-wildewidgets>=1.2.0",
 ]
 [build-system]
