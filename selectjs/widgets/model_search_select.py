@@ -29,7 +29,7 @@ class ModelSearchSelectWidget(forms.Select):
         context["widget"]["search_field"] = self.search_field
         context["widget"]["api_endpoint"] = self.api_endpoint
         context["widget"]["min_length"] = self.min_length
-        if value:
+        if self.model and value:
             try:
                 obj = self.model.objects.get(pk=value)
                 context["widget"]["selected_text"] = str(obj)

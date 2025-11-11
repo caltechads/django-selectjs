@@ -51,13 +51,18 @@ class ModelM2MSearchSelectWidget(forms.SelectMultiple):
                 pks = [value] if value else []
 
             # Fetch objects for display
-            for pk in pks:
-                if pk:
-                    try:
-                        obj = self.model.objects.get(pk=pk)
-                        selected_items.append({"id": pk, "text": str(obj)})
-                    except (self.model.DoesNotExist, ValueError, TypeError):
-                        pass
+            if self.model:
+                for pk in pks:
+                    if pk:
+                        try:
+                            obj = self.model.objects.get(pk=pk)
+                            selected_items.append({"id": pk, "text": str(obj)})
+                        except (
+                            self.model.DoesNotExist,
+                            ValueError,
+                            TypeError,
+                        ):
+                            pass
 
         context["widget"]["selected_items"] = selected_items
         return context
