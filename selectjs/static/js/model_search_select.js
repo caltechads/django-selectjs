@@ -25,15 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const searchInput = document.createElement('input');
       searchInput.type = 'text';
       searchInput.className = 'async-select-search form-control';
+      searchInput.placeholder = 'search (3 characters minimum)';
       if (select.dataset.required === 'True') {
         searchInput.required = true;
       }
       wrapper.insertBefore(searchInput, select);
       // wrapper.prepend(searchInput);
       const label = wrapper.querySelector('label');
-      if (label) {
-        label.textContent = `${label.textContent}: search (${minLength} characters minimum)`;
-      }
 
       // Create dropdown container
       const dropdown = document.createElement('div');
