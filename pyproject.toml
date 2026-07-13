@@ -63,10 +63,10 @@ ignore = [
 python-preference = "only-system"
 default-groups = ["docs", "test", "demo", "dev"]
 
-[tool.uv.workspace]
-members = [
-    "demo",
-]
+# [tool.uv.workspace]
+# members = [
+#     "demo",
+# ]
 
 [dependency-groups]
 dev = [
@@ -91,10 +91,10 @@ test = [
 demo = [
   "django~=5.2",
   "crispy-bootstrap5>=2025.6",
-  "django-book-manager>=0.3.7",
+  "django-book-manager>=0.3.2",
   "django-crispy-forms~=2.4",
   "django-extensions~=4.1",
-  "django-theme-academy>=0.3.71",
+  "django-theme-academy>=0.3.13",
   "django-wildewidgets>=1.2.0",
 ]
 [build-system]
